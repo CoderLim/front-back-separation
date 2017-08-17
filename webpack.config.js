@@ -49,6 +49,12 @@ module.exports = [
           }
         }
       ].concat(commonLoaders)
+    },
+    resolve: {
+      extensions: ['.js', '.jsx'],
+      alias: {
+        components: `${__dirname}/src/app/components`
+      }
     }
   },
   {
@@ -85,7 +91,10 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: ['.js', 'jsx']
+      extensions: ['.js', 'jsx'],
+      alias: {
+        components: `${__dirname}/src/app/components`
+      }
     }
   }
 ];
