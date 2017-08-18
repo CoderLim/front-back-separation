@@ -5,12 +5,15 @@ import { Route, Switch } from 'react-router';
 import Home from './components/home/index.jsx';
 import About from './components/about/index.jsx';
 
+const NotFound = () => <h1>404---NotFound</h1>
+
 export default class App extends React.Component {
   render () {
     return (
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path="/about" component={About}/>
+        <Route path="/about" component={About}/>
+        <Route component={NotFound}/>
       </Switch>
      );
   }

@@ -1,6 +1,7 @@
 /**
  *
- *  How to implement router in  server rendering: https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/server-rendering.md
+ *  How to implement router in  server rendering:
+ *  https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/server-rendering.md
  *
  */
 import express from 'express';
@@ -14,15 +15,18 @@ const server = express();
 
 server.use('/assets', express.static('assets'));
 
-server.get('/', (req, res) => {
+server.get('*', (req, res) => {
   let context = {};
-  const appString = renderToString(
+  const html = renderToString(
      <StaticRouter context={context} location={req.url}>
        <App />
      </StaticRouter>);
 
   res.send(template({
-    body: appString,
+    //
+    // Markup different on the server and the client
+    // https://github.com/Hashnode/mern-starter/issues/149
+    body: process.env.NODE_ENV === 'production' ? html : `<div>${html}</div>`,
     title: 'first server rendering app'
   }));
 });

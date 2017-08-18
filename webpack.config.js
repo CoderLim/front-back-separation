@@ -74,15 +74,13 @@ module.exports = [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          use: [
-            {
+          use: [{
               loader: 'babel-loader',
               query: {
                 presets: ['react', 'es2015', 'stage-0'],
                 compact: false
               }
-            }
-          ]
+            }]
         },
         {
           test: /\.scss$/,
